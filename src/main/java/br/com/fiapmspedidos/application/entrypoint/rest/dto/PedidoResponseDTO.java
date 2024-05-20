@@ -25,4 +25,10 @@ public class PedidoResponseDTO {
 
     @JsonProperty("valor_total")
     private BigDecimal valorTotal;
+
+    @JsonProperty("endereco_entrega")
+    private String enderecoEntrega;
+
+    @JsonProperty("data_entrega")
+    private String dataEntrega;
 }

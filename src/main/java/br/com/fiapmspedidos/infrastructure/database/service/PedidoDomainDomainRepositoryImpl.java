@@ -25,5 +25,4 @@ public class PedidoDomainDomainRepositoryImpl implements PedidoDomainRepository 
         return PedidoDomainEntity.paraEntidadeDominio(entidadeResponse);
 
     }
-
 }

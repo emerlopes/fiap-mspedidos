@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.UUID;
 
 @Getter
@@ -18,6 +19,12 @@ public class PedidoDomainEntity {
     private Long idProduto;
     private Integer quantidade;
     private UUID idExternoCliente;
+
+    @Setter
+    private String enderecoEntrega;
+
+    @Setter
+    private LocalDate dataEntrega;
 
     @Setter
     private BigDecimal valorTotal;
