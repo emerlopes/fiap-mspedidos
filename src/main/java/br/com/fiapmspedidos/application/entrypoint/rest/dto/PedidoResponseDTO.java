@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.experimental.Accessors;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.UUID;
 
 @Getter
@@ -30,5 +31,5 @@ public class PedidoResponseDTO {
     private String enderecoEntrega;
 
     @JsonProperty("data_entrega")
-    private String dataEntrega;
+    private LocalDate dataEntrega;
 }

@@ -15,7 +15,9 @@ import java.util.UUID;
 @Builder
 public class PedidoDomainEntity {
 
+    @Setter
     private Long idPedido;
+
     private Long idProduto;
     private Integer quantidade;
     private UUID idExternoCliente;
@@ -60,6 +62,8 @@ public class PedidoDomainEntity {
                 .quantidade(pedidoDomainEntity.getQuantidade())
                 .idExternoCliente(pedidoDomainEntity.getIdExternoCliente())
                 .valorTotal(pedidoDomainEntity.getValorTotal())
+                .dataEntrega(pedidoDomainEntity.getDataEntrega())
+                .enderecoEntrega(pedidoDomainEntity.getEnderecoEntrega())
                 .build();
     }
 

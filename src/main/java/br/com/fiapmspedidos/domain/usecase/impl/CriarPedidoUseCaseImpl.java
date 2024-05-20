@@ -80,6 +80,7 @@ public class CriarPedidoUseCaseImpl implements CriarPedidoUseCase {
             final var entregaDomainEntity = EntregaDomainEntity.paraEntidadeDominio(clienteResponse, pedidoResponse);
             final var entregaResponse = entregaDomainRepository.cadastrarEntrega(entregaDomainEntity);
 
+            pedido.setIdPedido(pedidoResponse.getIdPedido());
             pedido.setValorTotal(valorTotal);
             pedido.setEnderecoEntrega(entregaResponse.getEnderecoEntrega());
             pedido.setDataEntrega(entregaResponse.getDataEntrega());
