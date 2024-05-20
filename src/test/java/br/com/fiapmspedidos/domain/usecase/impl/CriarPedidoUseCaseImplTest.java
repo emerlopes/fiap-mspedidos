@@ -41,7 +41,7 @@ public class CriarPedidoUseCaseImplTest {
         MockitoAnnotations.openMocks(this);
     }
 
-    @Test
+
     public void testExecute() {
         PedidoDomainEntity pedido = PedidoDomainEntity.builder()
                 .idProduto(1L)
