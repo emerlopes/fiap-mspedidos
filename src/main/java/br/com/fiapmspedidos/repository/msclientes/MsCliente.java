@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 import java.util.UUID;
 
-@FeignClient(name = "ms-clientes", url = "http://localhost:8080")
+@FeignClient(name = "ms-clientes", url = "http://msclientes:8080")
 public interface MsCliente {
 
     @GetMapping("/clientes/{idCliente}")

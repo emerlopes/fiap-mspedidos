@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import java.util.Optional;
 
 
-@FeignClient(name = "ms-entregas", url = "http://localhost:8083")
+@FeignClient(name = "ms-entregas", url = "http://msentregas:8083")
 public interface MsEntregas {
 
     @GetMapping("/entregas")
