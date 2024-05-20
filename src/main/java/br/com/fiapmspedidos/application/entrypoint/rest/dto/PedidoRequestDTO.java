@@ -20,5 +20,5 @@ public class PedidoRequestDTO {
     private Integer quantidade;
 
     @JsonProperty("id_cliente")
-    private String idCliente;
+    private UUID idCliente;
 }
