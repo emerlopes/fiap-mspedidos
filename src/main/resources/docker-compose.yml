@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  msentregas:
+    image: emerlopes95/ms-entregas
+    container_name: msentregas
+    ports:
+      - "8083:8083"
+    networks:
+      - rede
+
+  mspedidos:
+    image: emerlopes95/ms-pedidos
+    container_name: mspedidos
+    ports:
+      - "8082:8082"
+    networks:
+      - rede
+
+  msprodutos:
+    image: emerlopes95/ms-produtos
+    container_name: msprodutos
+    ports:
+      - "8081:8081"
+    networks:
+      - rede
+
+  msclientes:
+    image: emerlopes95/ms-clientes
+    container_name: msclientes
+    ports:
+      - "8080:8080"
+    networks:
+      - rede
+
+networks:
+  rede:
+    driver: bridge
