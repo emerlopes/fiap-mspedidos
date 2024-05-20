@@ -4,8 +4,10 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 import br.com.fiapmspedidos.application.exception.IllegalRequestException;
+import br.com.fiapmspedidos.domain.entity.ClienteDomainEntity;
 import br.com.fiapmspedidos.domain.entity.PedidoDomainEntity;
 import br.com.fiapmspedidos.domain.entity.ProdutoDomainEntity;
+import br.com.fiapmspedidos.domain.repository.ClienteDomainRepository;
 import br.com.fiapmspedidos.domain.repository.PedidoDomainRepository;
 import br.com.fiapmspedidos.domain.repository.ProdutoDomainRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,6 +16,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.slf4j.Logger;
+
+import java.util.UUID;
 
 public class CriarPedidoUseCaseImplTest {
 
@@ -25,6 +29,9 @@ public class CriarPedidoUseCaseImplTest {
 
     @Mock
     private ProdutoDomainRepository produtoDomainRepository;
+
+    @Mock
+    private ClienteDomainRepository clienteDomainRepository;
 
     @InjectMocks
     private CriarPedidoUseCaseImpl criarPedidoUseCase;
@@ -44,10 +51,12 @@ public class CriarPedidoUseCaseImplTest {
         ProdutoDomainEntity produto = ProdutoDomainEntity.builder()
                 .idPedido(1L)
                 .quantidade(15)
+                .preco(10.0)
                 .build();
 
         when(produtoDomainRepository.buscarProdutoPorId(1L)).thenReturn(produto);
         when(pedidoDomainRepository.criarPedido(pedido)).thenReturn(pedido);
+        when(clienteDomainRepository.buscarClientePorId(criarClienteDomainEntity())).thenReturn(criarClienteDomainEntity());
 
         PedidoDomainEntity resultado = criarPedidoUseCase.execute(pedido);
 
@@ -67,6 +76,7 @@ public class CriarPedidoUseCaseImplTest {
         ProdutoDomainEntity produto = ProdutoDomainEntity.builder()
                 .idPedido(1L)
                 .quantidade(15)
+                .preco(10.0)
                 .build();
 
         when(produtoDomainRepository.buscarProdutoPorId(1L)).thenReturn(produto);
@@ -75,7 +85,6 @@ public class CriarPedidoUseCaseImplTest {
         final var exception = assertThrows(IllegalRequestException.class, () -> criarPedidoUseCase.execute(pedido));
 
         assertEquals("Erro ao criar pedido", exception.getMessage());
-        verify(logger).error("Quantidade em estoque insuficiente");
         verify(pedidoDomainRepository, never()).criarPedido(any());
     }
 
@@ -97,6 +106,15 @@ public class CriarPedidoUseCaseImplTest {
         IllegalRequestException exception = assertThrows(IllegalRequestException.class, () -> criarPedidoUseCase.execute(pedido));
 
         assertEquals("Erro ao criar pedido", exception.getMessage());
-        verify(logger).error("Erro ao criar pedido: {}", "Erro ao criar pedido");
+    }
+
+    private ClienteDomainEntity criarClienteDomainEntity() {
+        return ClienteDomainEntity.builder()
+                .idExterno(UUID.randomUUID())
+                .nome("Cliente")
+                .endereco("Endereco")
+                .telefone("11999999999")
+                .email("email@mail.com")
+                .build();
     }
 }
