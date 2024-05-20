@@ -57,6 +57,7 @@ jobs:
 
   docker:
 
+    depends-on: build-java
     runs-on: ubuntu-latest
     permissions:
       contents: read
